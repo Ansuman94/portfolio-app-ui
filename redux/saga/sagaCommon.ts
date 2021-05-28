@@ -4,7 +4,10 @@ import Axios from "axios";
 
 function* fetchData() {
   try {
-    console.log("fetching data");
+    console.log(
+      "fetching data",
+      `${process.env.NEXT_PUBLIC_WEB_API_URL}portfolios`
+    );
     Axios.defaults.headers.common[
       "Authorization"
     ] = `bearer ${localStorage.getItem("token")}`;

@@ -11,7 +11,7 @@ import { useEffect } from "react";
 import { WithAuthentication } from "..";
 import Navs from "../../components/Navs/Navs";
 function about(homeProps: any) {
-  // console.log("check env variable", getAccessToken());
+  console.log("check env variable");
 
   return (
     // <Provider store={Store}>
