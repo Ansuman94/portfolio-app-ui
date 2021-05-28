@@ -10,7 +10,7 @@ function* fetchData() {
     ] = `bearer ${localStorage.getItem("token")}`;
     const fetchedData = yield axios.get<any>(
       //"http://localhost:3001/api/portfolios"
-      `${process.env.WEB_API_URL}portfolios`
+      `${process.env.NEXT_PUBLIC_WEB_API_URL}portfolios`
     );
     const receivedData = fetchedData.data;
     yield put({

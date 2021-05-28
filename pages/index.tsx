@@ -41,6 +41,14 @@ export const WithAuthentication = <P extends any>(
     const handleAuthSuccess = () => {
       handleWhetherAuthenticated(true);
     };
+    console.log(
+      "check the env variables",
+      process.env.NEXT_PUBLIC_AUTH0_DOMAIN,
+      "myencode.us.auth0.com",
+      process.env.NEXT_PUBLIC_AUTH0_CLIENT_ID,
+      process.env.NEXT_PUBLIC_AUTH0_REDIRECT_URI,
+      process.env.NEXT_PUBLIC_AUTH0_AUDIENCE
+    );
     return (
       <Provider store={Store}>
         {/* <Auth0Provider
@@ -49,9 +57,9 @@ export const WithAuthentication = <P extends any>(
           redirectUri="http://localhost:3005/author/about"
         > */}
         <Auth0Provider
-          domain={process.env.AUTH0_DOMAIN}
-          clientId={process.env.AUTH0_CLIENT_ID}
-          redirectUri={process.env.AUTH0_REDIRECT_URI}
+          domain={`${process.env.NEXT_PUBLIC_AUTH0_DOMAIN}`}
+          clientId={`${process.env.NEXT_PUBLIC_AUTH0_CLIENT_ID}`}
+          redirectUri={`${process.env.NEXT_PUBLIC_AUTH0_REDIRECT_URI}`}
         >
           {whetherAuthenticated ? (
             <Component {...props} />
@@ -95,7 +103,7 @@ const AuthContainer = (props: IAuthContainerProps) => {
           //   scope: "read:current_user"
           // });
           const token = await getAccessTokenWithPopup({
-            audience: process.env.AUTH0_AUDIENCE,
+            audience: `${process.env.NEXT_PUBLIC_AUTH0_AUDIENCE}`,
             scope: "read:current_user"
           });
           localStorage.setItem("token", token);
@@ -129,7 +137,7 @@ const AuthContainer = (props: IAuthContainerProps) => {
         //   scope: "read:current_user"
         // });
         const token = await getAccessTokenWithPopup({
-          audience: process.env.AUTH0_AUDIENCE,
+          audience: `${process.env.NEXT_PUBLIC_AUTH0_AUDIENCE}`,
           scope: "read:current_user"
         });
         localStorage.setItem("token", token);
